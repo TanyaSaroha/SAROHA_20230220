@@ -13,6 +13,7 @@ class VideosController < ApplicationController
     if @video.save
       redirect_to root_path
     else
+      flash[:alert] = @video.errors&.full_messages&.join(" ")
       render :new
     end
   end
