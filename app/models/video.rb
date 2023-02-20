@@ -8,6 +8,6 @@ class Video < ApplicationRecord
   validate :file_size
 
   def file_size
-    errors.add :file, message: "should be less than 200MB" if file && file.size > 20.megabytes
+    errors.add :file, message: "should be less than 200MB" if file && file.size > 200.megabytes
   end
 end
