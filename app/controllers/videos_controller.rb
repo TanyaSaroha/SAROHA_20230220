@@ -6,7 +6,6 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new
-    @categories = Category.all
   end
 
   def create
@@ -14,7 +13,6 @@ class VideosController < ApplicationController
     if @video.save
       redirect_to root_path
     else
-      @categories = Category.all
       render :new
     end
   end

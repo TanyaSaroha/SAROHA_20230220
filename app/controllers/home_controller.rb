@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
 
   def index
-    @categories = [["All", "all"]] + Category.all.pluck(:name, :id)
     @category = Category.find_by(id: params[:category_id])
     if @category
       @videos = @category.videos.order(:created_at)
