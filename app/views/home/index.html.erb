@@ -1,0 +1,41 @@
+<div class="btn-container">
+  <div style="display: flex; margin-bottom: 15px; justify-content: flex-end">
+    <label class="select-categories-filter"> Category: </label>
+    <%= select_tag :category_id, options_for_select(categories_filter, @category&.id), id: "category_change",
+        class: 'form-control browser-default filter-input select-category',
+        data: { url: root_path } %>
+    <%= link_to new_video_path, :class => "btn btn-primary" do %>
+      Upload New
+    <% end %>      
+  </div>
+
+</div>
+
+<div class="content-container">
+  <div class="row">
+    <% @videos.each do |video| %>
+        <div class="column card">
+          <%= video_tag video.file.url, :size => "320x240", poster: video.file.thumb.url, title: video.title, :controls => true, :class => "video" %>
+          <div class="video-info">
+            <p class="category"> <%= video.category.name %></p>
+            <p class="text"> <%= video.title %> </p>
+          </div>
+        </div>
+    <% end %>
+    </div>
+</div>
+
+<script>
+    $('#category_change').click(function(event) {
+      var category = $('#category_change').val();
+      var data_url =  $(this).data('url');
+      $.ajax({
+          type: "GET",
+          url: data_url ,
+          data: {category_id: category},
+          success: function() {
+          }
+      });
+    });
+
+</script>
