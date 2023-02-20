@@ -1,0 +1,44 @@
+<div class="content-container">
+    <div>
+        <h4> Add New Video</h4>
+    </div>
+
+    <div class="row">
+        <div class="new-card col" >
+            <%= form_with( model: @video, url: videos_path, method: 'POST', local: true) do |f| %>
+              <div class="col">
+                  <div class="form-container">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 control-label">Category:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <%= f.select :category_id, categories, {:prompt => "Select Video Category"}, {required: 'true', class: 'select-category'}%>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 control-label">Title:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <%= f.text_field :title, class: "form-control hidden", placeholder: "Title for Video", required: true %>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 control-label">Upload File:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <%= f.file_field :file, class: "form-control hidden", accept: '.mp4, .mov, .webm', required: true%>
+                        </div>
+                    </div>
+              </div>
+
+              <div class="form-group form-actions" style="padding: 30px 0px">
+                  <div>
+                      <%= f.submit 'Save details', class: "btn btn-primary" %>
+                      <%= link_to videos_path, :class => "btn btn-outlined" do %>
+                          <% 'Cancel' %>
+                      <% end %>
+                  </div>
+              </div>
+              </div>
+            <% end %>
+      </div>
+</div>
